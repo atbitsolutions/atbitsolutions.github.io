@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ATB IT Solutions - Soporte IT, redes, servidores, firewalls, backups y consultoría tecnológica para empresas." />
+  <title>ATB IT Solutions | Infraestructura TI para empresas</title>
+  <style>
+    :root {
+      --navy: #061426;
+      --blue: #0b5fa5;
+      --cyan: #28b7ff;
+      --orange: #f47b00;
+      --dark: #0b1220;
+      --text: #172033;
+      --muted: #5d6b82;
+      --light: #f5f8fc;
+      --white: #ffffff;
+      --shadow: 0 18px 45px rgba(6, 20, 38, 0.14);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Arial, Helvetica, sans-serif; background: var(--light); color: var(--text); line-height: 1.6; }
+    a { text-decoration: none; }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(6, 20, 38, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-inner {
+      max-width: 1180px;
+      margin: auto;
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--white);
+      font-weight: 800;
+      letter-spacing: .4px;
+    }
+
+    .brand img {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: white;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #dbeafe;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover { color: var(--cyan); }
+
+    .hero {
+      background:
+        linear-gradient(120deg, rgba(6,20,38,0.96), rgba(8,58,107,0.88)),
+        radial-gradient(circle at top right, rgba(244,123,0,0.22), transparent 30%);
+      color: var(--white);
+      padding: 86px 22px 70px;
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      max-width: 1180px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 999px;
+      color: #dbeafe;
+      background: rgba(255,255,255,0.06);
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 1.06;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+
+    .hero h1 span { color: var(--cyan); }
+
+    .hero p {
+      font-size: 19px;
+      color: #dbeafe;
+      max-width: 670px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-weight: 800;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--orange); color: white; box-shadow: 0 12px 30px rgba(244,123,0,.28); }
+    .btn-secondary { background: rgba(255,255,255,.09); color: white; border: 1px solid rgba(255,255,255,.18); }
+
+    .hero-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 26px;
+      padding: 26px;
+      box-shadow: 0 24px 65px rgba(0,0,0,.22);
+    }
+
+    .hero-card img {
+      width: 100%;
+      border-radius: 22px;
+      background: white;
+      display: block;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.08);
+      padding: 14px;
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .stat strong { display:block; color: var(--cyan); font-size: 22px; }
+    .stat span { color: #dbeafe; font-size: 12px; }
+
+    section { padding: 70px 22px; }
+    .container { max-width: 1180px; margin: auto; }
+
+    .section-head { text-align: center; max-width: 780px; margin: 0 auto 35px; }
+    .section-head h2 { font-size: clamp(28px, 4vw, 42px); color: var(--navy); margin-bottom: 10px; }
+    .section-head p { color: var(--muted); font-size: 17px; }
+
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+
+    .card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(11,95,165,.08);
+      min-height: 210px;
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      background: linear-gradient(135deg, rgba(40,183,255,.16), rgba(244,123,0,.15));
+      margin-bottom: 14px;
+    }
+
+    .card h3 { color: var(--blue); margin-bottom: 10px; font-size: 20px; }
+    .card p { color: var(--muted); }
+
+    .dark-section {
+      background: linear-gradient(135deg, #07172f, #0b2746);
+      color: white;
+    }
+
+    .dark-section .section-head h2 { color: white; }
+    .dark-section .section-head p { color: #dbeafe; }
+
+    .plans { grid-template-columns: repeat(3, 1fr); }
+    .plan { position: relative; overflow: hidden; }
+    .plan.featured { border: 2px solid var(--orange); transform: scale(1.02); }
+    .plan .price { font-size: 31px; font-weight: 900; color: var(--navy); margin: 12px 0; }
+    .plan ul { margin: 16px 0 0 18px; color: var(--muted); }
+    .plan li { margin: 8px 0; }
+
+    .about-wrap {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 35px;
+      align-items: center;
+    }
+
+    .about-box {
+      background: white;
+      padding: 34px;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .about-box h2 { color: var(--navy); font-size: 36px; margin-bottom: 12px; }
+    .about-box p { color: var(--muted); margin-bottom: 16px; }
+
+    .about-image {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      min-height: 320px;
+      background: linear-gradient(135deg, #0b5fa5, #07172f);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .about-image img { width: 100%; max-width: 360px; border-radius: 18px; background: white; }
+
+    .tech-list {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 24px;
+    }
+
+    .tech-list span {
+      background: white;
+      border: 1px solid rgba(11,95,165,.14);
+      color: var(--blue);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      box-shadow: 0 10px 24px rgba(0,0,0,.05);
+    }
+
+    .cta {
+      background: linear-gradient(135deg, var(--orange), #ff9d28);
+      border-radius: 28px;
+      padding: 42px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      box-shadow: 0 20px 55px rgba(244,123,0,.24);
+    }
+
+    .cta h2 { font-size: 34px; margin-bottom: 8px; }
+    .cta p { color: rgba(255,255,255,.92); }
+    .cta .btn { background: var(--navy); color: white; }
+
+    footer {
+      background: var(--navy);
+      color: white;
+      padding: 35px 22px;
+      text-align: center;
+    }
+
+    footer p { color: #dbeafe; margin: 7px 0; }
+    footer a { color: var(--cyan); }
+
+    .whatsapp {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 200;
+      background: #25D366;
+      color: white;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      box-shadow: 0 14px 28px rgba(0,0,0,.22);
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner, .about-wrap { grid-template-columns: 1fr; }
+      .grid, .plans { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .stats { grid-template-columns: 1fr; }
+      .hero { padding-top: 54px; }
+      .cta { padding: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a class="brand" href="#inicio">
+        <img src="ATB.jpg" alt="Logo ATB IT Solutions" />
+        <span>ATB IT Solutions</span>
+      </a>
+      <div class="nav-links">
+        <a href="#servicios">Servicios</a>
+        <a href="#planes">Planes</a>
+        <a href="#tecnologias">Tecnologías</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="inicio">
+    <div class="hero-inner">
+      <div>
+        <div class="badge">⚡ Infraestructura TI • Redes • Servidores • Seguridad</div>
+        <h1>Soluciones IT estables para empresas que <span>crecen</span></h1>
+        <p>Implementamos, administramos y protegemos infraestructura tecnológica para negocios, oficinas y organizaciones que necesitan operar sin interrupciones.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://wa.me/595995357563" target="_blank">Solicitar asesoría</a>
+          <a class="btn btn-secondary" href="#servicios">Ver servicios</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <img src="ATB.jpg" alt="ATB IT Solutions" />
+        <div class="stats">
+          <div class="stat"><strong>24/7</strong><span>enfoque preventivo</span></div>
+          <div class="stat"><strong>IT</strong><span>soporte integral</span></div>
+          <div class="stat"><strong>PYME</strong><span>soluciones escalables</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="servicios">
+    <div class="container">
+      <div class="section-head">
+        <h2>Servicios principales</h2>
+        <p>Todo lo necesario para ordenar, proteger y hacer crecer la infraestructura tecnológica de tu empresa.</p>
+      </div>
+      <div class="grid">
+        <div class="card"><div class="icon">🛠️</div><h3>Soporte y Mantenimiento IT</h3><p>Soporte remoto y presencial, diagnóstico, mantenimiento preventivo, optimización de equipos y resolución de incidentes.</p></div>
+        <div class="card"><div class="icon">📡</div><h3>Redes Empresariales / Wi‑Fi</h3><p>Configuración de switches, puntos de acceso, VLANs, redes cableadas y Wi‑Fi profesional para oficinas y comercios.</p></div>
+        <div class="card"><div class="icon">🔐</div><h3>Seguridad y Firewalls</h3><p>Políticas de firewall, VPN, segmentación de red, control de accesos y buenas prácticas de protección básica.</p></div>
+        <div class="card"><div class="icon">💾</div><h3>Backups y Recuperación</h3><p>Respaldos automáticos, copias locales/nube, recuperación ante fallos y estrategias para proteger información crítica.</p></div>
+        <div class="card"><div class="icon">🖥️</div><h3>Servidores y Virtualización</h3><p>Windows Server, Ubuntu Server, Proxmox, VMware, Active Directory, DNS, DHCP y servicios internos.</p></div>
+        <div class="card"><div class="icon">🏢</div><h3>CCTV, Cableado y Data Center</h3><p>Cámaras, cableado estructurado, racks, organización técnica, montaje de infraestructura y consultoría IT.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark-section" id="planes">
+    <div class="container">
+      <div class="section-head">
+        <h2>Planes de soporte</h2>
+        <p>Opciones simples para empezar con soporte profesional sin complicaciones.</p>
+      </div>
+      <div class="grid plans">
+        <div class="card plan">
+          <h3>Plan Básico</h3>
+          <div class="price">350.000 Gs/mes</div>
+          <p>Ideal para negocios pequeños que necesitan soporte confiable.</p>
+          <ul><li>Soporte remoto</li><li>Mantenimiento preventivo</li><li>Revisión general</li></ul>
+        </div>
+        <div class="card plan featured">
+          <h3>Plan Empresarial</h3>
+          <div class="price">650.000 Gs/mes</div>
+          <p>Para empresas con más equipos, red, servidores o sistemas críticos.</p>
+          <ul><li>Soporte remoto + visita mensual</li><li>Monitoreo básico</li><li>Servidores, red y backups</li></ul>
+        </div>
+        <div class="card plan">
+          <h3>Soporte Puntual</h3>
+          <div class="price">150.000 Gs</div>
+          <p>Atención bajo demanda para fallas o configuraciones específicas.</p>
+          <ul><li>Diagnóstico</li><li>Configuración</li><li>Resolución de incidentes</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container about-wrap">
+      <div class="about-image">
+        <img src="ATB.jpg" alt="Logo ATB" />
+      </div>
+      <div class="about-box">
+        <h2>Infraestructura clara, segura y escalable</h2>
+        <p>ATB IT Solutions ayuda a empresas, oficinas y comercios a pasar de una infraestructura desordenada a un entorno controlado, documentado y preparado para crecer.</p>
+        <p>Nuestro enfoque combina soporte técnico, redes, servidores, seguridad y backups para reducir riesgos, mejorar disponibilidad y simplificar la operación diaria.</p>
+        <a class="btn btn-primary" href="https://wa.me/595995357563" target="_blank">Hablar con ATB</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="tecnologias">
+    <div class="container">
+      <div class="section-head">
+        <h2>Tecnologías que manejamos</h2>
+        <p>Soluciones reales para entornos empresariales, redes y servidores.</p>
+      </div>
+      <div class="tech-list">
+        <span>Windows Server</span><span>Ubuntu Server</span><span>Active Directory</span><span>Microsoft 365</span><span>Exchange</span><span>Proxmox</span><span>VMware</span><span>MikroTik</span><span>Fortinet</span><span>Aruba</span><span>Ubiquiti</span><span>Veeam</span><span>Zabbix</span><span>CCTV</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="container">
+      <div class="cta">
+        <div>
+          <h2>¿Necesitás ordenar tu infraestructura IT?</h2>
+          <p>Escribinos y evaluamos la mejor solución para tu empresa.</p>
+        </div>
+        <a class="btn" href="https://wa.me/595995357563" target="_blank">Contactar por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>ATB IT Solutions</strong></p>
+    <p>WhatsApp: <a href="https://wa.me/595995357563" target="_blank">0995 357 563</a></p>
+    <p>Email: <a href="mailto:arnold01ba@gmail.com">arnold01ba@gmail.com</a></p>
+    <p>© 2026 ATB IT Solutions. Tecnología estable para empresas que crecen.</p>
+  </footer>
+
+  <a class="whatsapp" href="https://wa.me/595995357563" target="_blank" aria-label="WhatsApp">☘</a>
+</body>
+</html>
